@@ -10,13 +10,13 @@ class SearchUser extends React.Component{
   handleSubmit(e) {
     e.preventDefault();
 
-    GitHubUser.getByUsername(this.refs.username.value).then((response) => {
-      this.props.updateUser(response.data);
-    });
+    GitHubUser.getByUsername(this.refs.username.value).then((response) => 
+      this.props.updateUser(response.data)
+    );
 
-    GitHubUser.getReposByUsername(this.refs.username.value).then((response) => {
-      this.props.updateRepos(response.data);
-    });
+    GitHubUser.getReposByUsername(this.refs.username.value).then((response) => 
+      this.props.updateRepos(response.data)
+    );
   }
 
   render() {

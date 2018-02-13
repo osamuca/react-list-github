@@ -3,7 +3,7 @@ import React from 'react';
 import UserRepos from './UserRepos';
 
 const UserInfo = ({ user, repos }) => {
-  var userInfo = user ?
+  let userInfo = user ?
     (
       <div className="row">
         <div className="col-lg-4">

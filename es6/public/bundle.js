@@ -22059,11 +22059,11 @@
 	      e.preventDefault();
 
 	      _GitHubUser2.default.getByUsername(this.refs.username.value).then(function (response) {
-	        _this2.props.updateUser(response.data);
+	        return _this2.props.updateUser(response.data);
 	      });
 
 	      _GitHubUser2.default.getReposByUsername(this.refs.username.value).then(function (response) {
-	        _this2.props.updateRepos(response.data);
+	        return _this2.props.updateRepos(response.data);
 	      });
 	    }
 	  }, {

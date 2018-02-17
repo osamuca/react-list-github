@@ -1,48 +1,53 @@
-var React = require('react');
-var GitHubUser = require('../services/GitHubUser');
+import React from 'react';
+import GitHubUser from '../services/GitHubUser';
 
-var SearchUser = React.createClass({
-    handleSubmit: function (e) {
-        e.preventDefault();
+class SearchUser extends React.Component{
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-        GitHubUser.getByUsername(this.refs.username.value).then(function(response) {
-            this.props.updateUser(response.data);  
-        }.bind(this));
+  handleSubmit(e) {
+    e.preventDefault();
 
-        GitHubUser.getReposByUsername(this.refs.username.value).then(function (response) {
-            this.props.updateRepos(response.data);
-        }.bind(this));
-    },
+    GitHubUser.getByUsername(this.refs.username.value).then((response) => 
+      this.props.updateUser(response.data)
+    );
 
-    render: function () {
-        return (
-            <div className="jumbotron">
-                <h1>GitHub Info</h1>
-                <div className="row">
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label>Username</label>
-                            <input
-                                type="text"
-                                ref="username"
-                                className="form-control"
-                                placeholder="Ex: osamuca"
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            className="btn btn-primary">Buscar
-            </button>
-                    </form>
-                </div>
+    GitHubUser.getReposByUsername(this.refs.username.value).then((response) => 
+      this.props.updateRepos(response.data)
+    );
+  }
+
+  render() {
+    return (
+      <div className="jumbotron">
+        <h1>GitHub Info</h1>
+        <div className="row">
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                ref="username"
+                className="form-control"
+                placeholder="Ex: osamuca"
+                />
             </div>
-        );
-    }
-});
+            <button
+              type="submit"
+              className="btn btn-primary">Buscar
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+}
 
 SearchUser.propTypes = {
-    updateUser: React.PropTypes.func.isRequired,
-    updateRepos: React.PropTypes.func.isRequired,
+  updateUser: React.PropTypes.func.isRequired,
+  updateRepos: React.PropTypes.func.isRequired,
 };
 
-module.exports = SearchUser;
+export default SearchUser;
